@@ -21,6 +21,33 @@ const NoteState = ({ children }) => {
       date: '1674620867205',
       __v: 0,
     },
+    {
+      _id: '63d0afc3abcda05588fecae5',
+      title: 'test 3',
+      description: 'delete me!',
+      tag: 'General',
+      user: '63ce1602468a14bdc00df47d',
+      date: '1674620867205',
+      __v: 0,
+    },
+    {
+      _id: '63d0afc3abcda05588fecae5',
+      title: 'test 4',
+      description: 'delete me!',
+      tag: 'General',
+      user: '63ce1602468a14bdc00df47d',
+      date: '1674620867205',
+      __v: 0,
+    },
+    {
+      _id: '63d0afc3abcda05588fecae5',
+      title: 'test 5',
+      description: 'delete me!',
+      tag: 'General',
+      user: '63ce1602468a14bdc00df47d',
+      date: '1674620867205',
+      __v: 0,
+    },
   ]
   const [notes, setNotes] = useState(notesInitial)
   return (
