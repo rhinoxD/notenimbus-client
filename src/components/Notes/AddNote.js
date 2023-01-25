@@ -17,7 +17,7 @@ const AddNote = () => {
     e.preventDefault()
     addNote(note.title, note.description, note.tag)
   }
-  
+
   return (
     <div className='container my-4'>
       <h1>Add a Note</h1>
@@ -52,7 +52,7 @@ const AddNote = () => {
             className='form-control'
             id='tag'
             name='tag'
-            // placeholder='Tag'
+            placeholder='Tag'
             onChange={onChange}
           />
         </div>

@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 
 import NoteContext from '../../context/notes/NoteContext'
 
-const NoteItem = ({ note }) => {
+const NoteItem = ({ note, updateNote }) => {
   const context = useContext(NoteContext)
   const { deleteNote } = context
 
@@ -49,7 +49,7 @@ const NoteItem = ({ note }) => {
             </span>
           </h5>
           <p className='card-text'>{note.description}</p>
-          <button className='btn btn-info'>
+          <button className='btn btn-info' onClick={() => updateNote(note)}>
             <i className='fa-regular fa-pen-to-square'></i>
           </button>
           <button
