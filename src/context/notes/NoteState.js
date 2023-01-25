@@ -4,7 +4,7 @@ import NoteContext from './NoteContext'
 const NoteState = ({ children }) => {
   const notesInitial = [
     {
-      id: '63cf5f5366ae36582bb8f81c',
+      _id: '63cf5f5366ae36582bb8f81c',
       title: 'test',
       description: 'testing',
       tag: 'Changed tag',
@@ -13,7 +13,7 @@ const NoteState = ({ children }) => {
       __v: 0,
     },
     {
-      id: '63d0afc3abcda05588fecae5',
+      _id: '63d0afc3abcda05588fecae5',
       title: 'test 2',
       description: 'delete me!',
       tag: 'General',
@@ -22,7 +22,7 @@ const NoteState = ({ children }) => {
       __v: 0,
     },
     {
-      id: '63d0afc3abcda05588fecae6',
+      _id: '63d0afc3abcda05588fecae6',
       title: 'test 3',
       description: 'delete me!',
       tag: 'General',
@@ -31,7 +31,7 @@ const NoteState = ({ children }) => {
       __v: 0,
     },
     {
-      id: '63d0afc3abcda05588fecae7',
+      _id: '63d0afc3abcda05588fecae7',
       title: 'test 4',
       description: 'delete me!',
       tag: 'General',
@@ -46,7 +46,7 @@ const NoteState = ({ children }) => {
   const addNote = (title, description, tag) => {
     // TODO: API call
     const note = {
-      id: '63d0afc3abcda05588fecae8',
+      _id: '63d0afc3abcda05588fecae8',
       title,
       description,
       tag,
@@ -61,7 +61,11 @@ const NoteState = ({ children }) => {
   const editNote = () => {}
 
   // Delete note
-  const deleteNote = () => {}
+  const deleteNote = (id) => {
+    // TODO: API call
+    const newNotes = notes.filter((note) => note._id !== id)
+    setNotes(newNotes)
+  }
 
   return (
     <NoteContext.Provider value={{ notes, addNote, editNote, deleteNote }}>

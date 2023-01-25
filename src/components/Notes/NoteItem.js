@@ -1,7 +1,18 @@
+import { useContext, useEffect, useState } from 'react'
+import NoteContext from '../../context/notes/NoteContext'
+
 const NoteItem = ({ note }) => {
+  const context = useContext(NoteContext)
+  const { deleteNote } = context
+
+  const [random, setRandom] = useState(null);
   const colors = ['primary', 'danger', 'dark']
-  let random = Math.floor(Math.random() * colors.length)
-  console.log(random)
+
+  useEffect(() => {
+    setRandom(Math.floor(Math.random() * colors.length))
+    // eslint-disable-next-line
+  }, []);
+  
   return (
     <div className='col-md-3'>
       <div className='card my-2'>
@@ -19,7 +30,12 @@ const NoteItem = ({ note }) => {
           <button className='btn btn-info'>
             <i className='fa-regular fa-pen-to-square'></i>
           </button>
-          <button className='btn btn-danger ms-2'>
+          <button
+            className='btn btn-danger ms-2'
+            onClick={() => {
+              deleteNote(note._id)
+            }}
+          >
             <i className='fa-solid fa-trash'></i>
           </button>
         </div>
