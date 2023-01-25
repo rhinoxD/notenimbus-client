@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
+
 import NoteContext from '../../context/notes/NoteContext'
 
 const NoteItem = ({ note }) => {

@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react'
+
 import NoteContext from '../../context/notes/NoteContext'
 
 const AddNote = () => {
@@ -16,6 +17,7 @@ const AddNote = () => {
     e.preventDefault()
     addNote(note.title, note.description, note.tag)
   }
+  
   return (
     <div className='container my-4'>
       <h1>Add a Note</h1>
