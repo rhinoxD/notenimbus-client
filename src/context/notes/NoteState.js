@@ -4,7 +4,7 @@ import NoteContext from './NoteContext'
 const NoteState = ({ children }) => {
   const notesInitial = [
     {
-      _id: '63cf5f5366ae36582bb8f81c',
+      id: '63cf5f5366ae36582bb8f81c',
       title: 'test',
       description: 'testing',
       tag: 'Changed tag',
@@ -13,7 +13,7 @@ const NoteState = ({ children }) => {
       __v: 0,
     },
     {
-      _id: '63d0afc3abcda05588fecae5',
+      id: '63d0afc3abcda05588fecae5',
       title: 'test 2',
       description: 'delete me!',
       tag: 'General',
@@ -22,7 +22,7 @@ const NoteState = ({ children }) => {
       __v: 0,
     },
     {
-      _id: '63d0afc3abcda05588fecae5',
+      id: '63d0afc3abcda05588fecae6',
       title: 'test 3',
       description: 'delete me!',
       tag: 'General',
@@ -31,7 +31,7 @@ const NoteState = ({ children }) => {
       __v: 0,
     },
     {
-      _id: '63d0afc3abcda05588fecae5',
+      id: '63d0afc3abcda05588fecae7',
       title: 'test 4',
       description: 'delete me!',
       tag: 'General',
@@ -40,7 +40,7 @@ const NoteState = ({ children }) => {
       __v: 0,
     },
     {
-      _id: '63d0afc3abcda05588fecae5',
+      id: '63d0afc3abcda05588fecae8',
       title: 'test 5',
       description: 'delete me!',
       tag: 'General',
