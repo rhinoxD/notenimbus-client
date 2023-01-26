@@ -1,7 +1,15 @@
+import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 const Navbar = () => {
   let location = useLocation()
+  const [isHover, setIsHover] = useState(false)
+  const [isHover2, setIsHover2] = useState(false)
+  const handleMouseEnter = () => setIsHover(true)
+  const handleMouseLeave = () => setIsHover(false)
+  const handleMouseEnter2 = () => setIsHover2(true)
+  const handleMouseLeave2 = () => setIsHover2(false)
+
   return (
     <nav className='navbar navbar-expand-lg bg-dark navbar-dark'>
       <div className='container-fluid'>
@@ -44,15 +52,26 @@ const Navbar = () => {
             </li>
           </ul>
           <form className='d-flex' role='search'>
-            <input
-              className='form-control me-2'
-              type='search'
-              placeholder='Search'
-              aria-label='Search'
-            />
-            <button className='btn btn-outline-success' type='submit'>
-              Search
-            </button>
+            <Link
+              className='btn  mx-1'
+              to='/login'
+              role='button'
+              style={{ backgroundColor: `${isHover ? '#715fd3' : '#7B68EE'}` }}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              Login
+            </Link>
+            <Link
+              className='btn mx-1'
+              role='button'
+              to='/signup'
+              style={{ backgroundColor: `${isHover2 ? '#715fd3' : '#7B68EE'}` }}
+              onMouseEnter={handleMouseEnter2}
+              onMouseLeave={handleMouseLeave2}
+            >
+              Signup
+            </Link>
           </form>
         </div>
       </div>
