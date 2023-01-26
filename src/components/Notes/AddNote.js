@@ -62,7 +62,7 @@ const AddNote = () => {
             required
           />
           <p className='text-danger d-none' ref={val}>
-            Enter atleast 3 characters
+            Enter at least 3 characters
           </p>
         </div>
         <div className='form-group'>
@@ -79,7 +79,7 @@ const AddNote = () => {
             required
           />
           <p className='text-danger d-none' ref={val2}>
-            Enter atleast 5 characters
+            Enter at least 5 characters
           </p>
         </div>
         <div className='form-group'>
@@ -98,7 +98,9 @@ const AddNote = () => {
           type='submit'
           className='btn btn-primary mt-2'
           onClick={handleClick}
-          disabled={note.title.length < 3 || note.description.length < 5}
+          disabled={
+            note.title.trim().length < 3 || note.description.trim().length < 5 || note.tag.trim().length === 0
+          }
         >
           Add Note
         </button>

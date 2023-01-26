@@ -38,7 +38,7 @@ const Notes = () => {
       }
     }
     if (e.target.name === 'eDescription') {
-      console.log(note.eDescription.trim().length);
+      console.log(note.eDescription.trim().length)
       if (note.eDescription.trim().length < 4) {
         val2.current.classList.remove('d-none')
         val2.current.classList.add('d-block')
@@ -115,7 +115,7 @@ const Notes = () => {
                     required
                   />
                   <p className='text-danger d-none' ref={val}>
-                    Enter atleast 3 characters
+                    Enter at least 3 characters
                   </p>
                 </div>
                 <div className='form-group my-3'>
@@ -133,7 +133,7 @@ const Notes = () => {
                     required
                   />
                   <p className='text-danger d-none' ref={val2}>
-                    Enter atleast 5 characters
+                    Enter at least 5 characters
                   </p>
                 </div>
                 <div className='form-group my-3'>
@@ -166,7 +166,9 @@ const Notes = () => {
                 className='btn btn-primary'
                 onClick={handleClick}
                 disabled={
-                  note.eTitle.length < 3 || note.eDescription.length < 5
+                  note.eTitle.trim().length < 3 ||
+                  note.eDescription.trim().length < 5 ||
+                  note.eTag.trim().length === 0
                 }
               >
                 Update Note
