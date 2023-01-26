@@ -36,6 +36,7 @@ const Login = ({ showAlert }) => {
   return (
     <form onSubmit={handleSubmit} method='post'>
       <div className='mb-3 mt-4'>
+        <h1>Login</h1>
         <label htmlFor='email' className='form-label'>
           Email address
         </label>

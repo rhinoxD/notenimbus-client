@@ -44,7 +44,8 @@ const Signup = ({ showAlert }) => {
   }
   return (
     <form onSubmit={handleSubmit} method='post'>
-      <div className='mb-3'>
+      <div className='my-3'>
+        <h1>Sign Up</h1>
         <label htmlFor='name' className='form-label'>
           Name
         </label>

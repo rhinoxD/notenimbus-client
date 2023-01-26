@@ -1,10 +1,12 @@
 import { useContext, useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import NoteContext from '../../context/notes/NoteContext'
 import AddNote from './AddNote'
 import NoteItem from './NoteItem'
 
 const Notes = ({ showAlert }) => {
+  const navigate = useNavigate()
   const context = useContext(NoteContext)
   const { notes, fetchNotes, editNote } = context
   const ref = useRef(null)
@@ -19,9 +21,13 @@ const Notes = ({ showAlert }) => {
   })
 
   useEffect(() => {
-    fetchNotes()
+    if (localStorage.getItem('auth-token')) {
+      fetchNotes()
+    } else {
+      navigate('/login')
+    }
     // eslint-disable-next-line
-  }, [])
+  }, [navigate])
 
   const onChange = (e) => {
     setNote({
@@ -179,7 +185,7 @@ const Notes = ({ showAlert }) => {
         </div>
       </div>
 
-      <div className='row my-4'>
+      <div className='row my-4' style={{marginLeft: '0.1rem'}}>
         <h1>Your Notes</h1>
         <div className='container mx-1'>
           {notes.length === 0 && 'No notes to display'}
