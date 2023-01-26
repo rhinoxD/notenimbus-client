@@ -9,6 +9,8 @@ const Notes = () => {
   const { notes, fetchNotes, editNote } = context
   const ref = useRef(null)
   const refClose = useRef(null)
+  const val = useRef(null)
+  const val2 = useRef(null)
   const [note, setNote] = useState({
     id: '',
     eTitle: '',
@@ -26,6 +28,25 @@ const Notes = () => {
       ...note,
       [e.target.name]: e.target.value,
     })
+    if (e.target.name === 'eTitle') {
+      if (note.eTitle.trim().length < 2) {
+        val.current.classList.remove('d-none')
+        val.current.classList.add('d-block')
+      } else {
+        val.current.classList.remove('d-block')
+        val.current.classList.add('d-none')
+      }
+    }
+    if (e.target.name === 'eDescription') {
+      console.log(note.eDescription.trim().length);
+      if (note.eDescription.trim().length < 4) {
+        val2.current.classList.remove('d-none')
+        val2.current.classList.add('d-block')
+      } else {
+        val2.current.classList.remove('d-block')
+        val2.current.classList.add('d-none')
+      }
+    }
   }
   const handleClick = (e) => {
     e.preventDefault()
@@ -88,12 +109,14 @@ const Notes = () => {
                     id='eTitle'
                     name='eTitle'
                     aria-describedby='title'
-                    placeholder='Enter Title'
                     onChange={onChange}
                     value={note.eTitle}
                     minLength={3}
                     required
                   />
+                  <p className='text-danger d-none' ref={val}>
+                    Enter atleast 3 characters
+                  </p>
                 </div>
                 <div className='form-group my-3'>
                   <label htmlFor='description' className='mb-1'>
@@ -104,12 +127,14 @@ const Notes = () => {
                     className='form-control'
                     id='eDescription'
                     name='eDescription'
-                    placeholder='Description...'
                     onChange={onChange}
                     value={note.eDescription}
                     minLength={5}
                     required
                   />
+                  <p className='text-danger d-none' ref={val2}>
+                    Enter atleast 5 characters
+                  </p>
                 </div>
                 <div className='form-group my-3'>
                   <label htmlFor='tag' className='mb-1'>
@@ -140,7 +165,9 @@ const Notes = () => {
                 type='button'
                 className='btn btn-primary'
                 onClick={handleClick}
-                disabled={note.eTitle.length < 3 || note.eDescription.length < 5}
+                disabled={
+                  note.eTitle.length < 3 || note.eDescription.length < 5
+                }
               >
                 Update Note
               </button>

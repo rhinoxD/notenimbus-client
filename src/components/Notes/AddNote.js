@@ -18,15 +18,17 @@ const AddNote = () => {
       ...note,
       [e.target.name]: e.target.value,
     })
-    if (note.title.length < 2) {
-      val.current.classList.remove('d-none')
-      val.current.classList.add('d-block')
-    } else {
-      val.current.classList.remove('d-block')
-      val.current.classList.add('d-none')
+    if (e.target.name === 'title') {
+      if (note.title.trim().length < 2) {
+        val.current.classList.remove('d-none')
+        val.current.classList.add('d-block')
+      } else {
+        val.current.classList.remove('d-block')
+        val.current.classList.add('d-none')
+      }
     }
     if (e.target.name === 'description') {
-      if (note.description.length < 4) {
+      if (note.description.trim().length < 4) {
         val2.current.classList.remove('d-none')
         val2.current.classList.add('d-block')
       } else {
