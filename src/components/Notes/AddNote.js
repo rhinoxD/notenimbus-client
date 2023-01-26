@@ -2,7 +2,7 @@ import { useContext, useState, useRef } from 'react'
 
 import NoteContext from '../../context/notes/NoteContext'
 
-const AddNote = () => {
+const AddNote = ({ showAlert }) => {
   const context = useContext(NoteContext)
   const { addNote } = context
   const [note, setNote] = useState({
@@ -41,6 +41,7 @@ const AddNote = () => {
     e.preventDefault()
     addNote(note.title, note.description, note.tag)
     setNote({ title: '', description: '', tag: 'General' })
+    showAlert('Note added successfully.', 'info')
   }
 
   return (
@@ -99,7 +100,9 @@ const AddNote = () => {
           className='btn btn-primary mt-2'
           onClick={handleClick}
           disabled={
-            note.title.trim().length < 3 || note.description.trim().length < 5 || note.tag.trim().length === 0
+            note.title.trim().length < 3 ||
+            note.description.trim().length < 5 ||
+            note.tag.trim().length === 0
           }
         >
           Add Note

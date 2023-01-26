@@ -4,7 +4,7 @@ import NoteContext from '../../context/notes/NoteContext'
 import AddNote from './AddNote'
 import NoteItem from './NoteItem'
 
-const Notes = () => {
+const Notes = ({ showAlert }) => {
   const context = useContext(NoteContext)
   const { notes, fetchNotes, editNote } = context
   const ref = useRef(null)
@@ -52,6 +52,7 @@ const Notes = () => {
     e.preventDefault()
     editNote(note.id, note.eTitle, note.eDescription, note.eTag)
     refClose.current.click()
+    showAlert('Note updated successfully.', 'info')
   }
 
   const updateNote = (currentNote) => {
@@ -66,7 +67,7 @@ const Notes = () => {
 
   return (
     <>
-      <AddNote />
+      <AddNote showAlert={showAlert} />
       <button
         type='button'
         className='btn btn-primary'
@@ -184,7 +185,14 @@ const Notes = () => {
           {notes.length === 0 && 'No notes to display'}
         </div>
         {notes.map((note) => {
-          return <NoteItem note={note} key={note._id} updateNote={updateNote} />
+          return (
+            <NoteItem
+              note={note}
+              key={note._id}
+              updateNote={updateNote}
+              showAlert={showAlert}
+            />
+          )
         })}
       </div>
     </>

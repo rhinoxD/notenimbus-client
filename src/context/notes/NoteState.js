@@ -35,14 +35,13 @@ const NoteState = ({ children }) => {
       body: JSON.stringify({ title, description, tag  }),
     })
     const data = await res.json()
-    console.log(data);
     setNotes(notes.concat(data))
   }
 
   // Edit note
   const editNote = async (id, title, description, tag) => {
     // API call
-    const res = await fetch(`${host}/updatenote/${id}`, {
+    await fetch(`${host}/updatenote/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -51,8 +50,6 @@ const NoteState = ({ children }) => {
       },
       body: JSON.stringify({ title, description, tag }),
     })
-    const data = await res.json()
-    console.log(data)
 
     // Logic to edit in client
     let newNotes = JSON.parse(JSON.stringify(notes))
@@ -71,7 +68,7 @@ const NoteState = ({ children }) => {
   // Delete note
   const deleteNote = async (id) => {
     // API call
-    const res = await fetch(`${host}/deletenote/${id}`, {
+    await fetch(`${host}/deletenote/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -79,8 +76,6 @@ const NoteState = ({ children }) => {
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNjZTE2MDI0NjhhMTRiZGMwMGRmNDdkIn0sImlhdCI6MTY3NDUzMzg1N30.gK7GBmadhhiQ7EAZr3wbGW1yQ5-bWebXW-jztLVPEUA',
       },
     })
-    const data = await res.json()
-    console.log(data)
 
     const newNotes = notes.filter((note) => note._id !== id)
     setNotes(newNotes)

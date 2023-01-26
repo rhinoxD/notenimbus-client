@@ -1,9 +1,9 @@
 import Notes from './Notes/Notes'
 
-const Home = () => {
+const Home = ({ showAlert }) => {
   return (
     <>
-      <Notes />
+      <Notes showAlert={showAlert} />
     </>
   )
 }
