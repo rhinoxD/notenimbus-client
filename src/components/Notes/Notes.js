@@ -91,6 +91,8 @@ const Notes = () => {
                     placeholder='Enter Title'
                     onChange={onChange}
                     value={note.eTitle}
+                    minLength={3}
+                    required
                   />
                 </div>
                 <div className='form-group my-3'>
@@ -105,6 +107,8 @@ const Notes = () => {
                     placeholder='Description...'
                     onChange={onChange}
                     value={note.eDescription}
+                    minLength={5}
+                    required
                   />
                 </div>
                 <div className='form-group my-3'>
@@ -136,6 +140,7 @@ const Notes = () => {
                 type='button'
                 className='btn btn-primary'
                 onClick={handleClick}
+                disabled={note.eTitle.length < 3 || note.eDescription.length < 5}
               >
                 Update Note
               </button>
@@ -146,6 +151,9 @@ const Notes = () => {
 
       <div className='row my-4'>
         <h1>Your Notes</h1>
+        <div className='container mx-1'>
+          {notes.length === 0 && 'No notes to display'}
+        </div>
         {notes.map((note) => {
           return <NoteItem note={note} key={note._id} updateNote={updateNote} />
         })}

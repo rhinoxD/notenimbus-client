@@ -32,21 +32,11 @@ const NoteState = ({ children }) => {
         'auth-token':
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNjZTE2MDI0NjhhMTRiZGMwMGRmNDdkIn0sImlhdCI6MTY3NDUzMzg1N30.gK7GBmadhhiQ7EAZr3wbGW1yQ5-bWebXW-jztLVPEUA',
       },
-      body: JSON.stringify({ title, description, tag }),
+      body: JSON.stringify({ title, description, tag  }),
     })
     const data = await res.json()
-    console.log(data)
-
-    const note = {
-      _id: '63d0afc3abcda05588fecae8',
-      title,
-      description,
-      tag,
-      user: '63ce1602468a14bdc00df47d',
-      date: '1674620867205',
-      __v: 0,
-    }
-    setNotes(notes.concat(note))
+    console.log(data);
+    setNotes(notes.concat(data))
   }
 
   // Edit note
