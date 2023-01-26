@@ -34,6 +34,8 @@ const NoteState = ({ children }) => {
       },
       body: JSON.stringify({ title, description, tag }),
     })
+    const data = await res.json()
+    console.log(data)
 
     const note = {
       _id: '63d0afc3abcda05588fecae8',
@@ -59,16 +61,21 @@ const NoteState = ({ children }) => {
       },
       body: JSON.stringify({ title, description, tag }),
     })
+    const data = await res.json()
+    console.log(data)
 
     // Logic to edit in client
+    let newNotes = JSON.parse(JSON.stringify(notes))
     for (let i = 0; i < notes.length; i++) {
       const el = notes[i]
       if (el._id === id) {
-        el.title = title
-        el.description = description
-        el.tag = tag
+        newNotes[i].title = title
+        newNotes[i].description = description
+        newNotes[i].tag = tag
+        break
       }
     }
+    setNotes(newNotes)
   }
 
   // Delete note
@@ -82,7 +89,8 @@ const NoteState = ({ children }) => {
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNjZTE2MDI0NjhhMTRiZGMwMGRmNDdkIn0sImlhdCI6MTY3NDUzMzg1N30.gK7GBmadhhiQ7EAZr3wbGW1yQ5-bWebXW-jztLVPEUA',
       },
     })
-    // const data = await res.json()
+    const data = await res.json()
+    console.log(data)
 
     const newNotes = notes.filter((note) => note._id !== id)
     setNotes(newNotes)

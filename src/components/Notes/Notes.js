@@ -8,7 +8,13 @@ const Notes = () => {
   const context = useContext(NoteContext)
   const { notes, fetchNotes, editNote } = context
   const ref = useRef(null)
-  const [note, setNote] = useState({ eTitle: '', eDescription: '', eTag: '' })
+  const refClose = useRef(null)
+  const [note, setNote] = useState({
+    id: '',
+    eTitle: '',
+    eDescription: '',
+    eTag: '',
+  })
 
   useEffect(() => {
     fetchNotes()
@@ -23,12 +29,14 @@ const Notes = () => {
   }
   const handleClick = (e) => {
     e.preventDefault()
-    // editNote(note.title, note.description, note.tag)
+    editNote(note.id, note.eTitle, note.eDescription, note.eTag)
+    refClose.current.click()
   }
 
   const updateNote = (currentNote) => {
     ref.current.click()
     setNote({
+      id: currentNote._id,
       eTitle: currentNote.title,
       eDescription: currentNote.description,
       eTag: currentNote.tag,
@@ -120,6 +128,7 @@ const Notes = () => {
                 type='button'
                 className='btn btn-secondary'
                 data-bs-dismiss='modal'
+                ref={refClose}
               >
                 Close
               </button>
