@@ -15,22 +15,25 @@ const Signup = ({ showAlert }) => {
       [e.target.name]: e.target.value,
     })
   }
+  let url
+  if (process.env.NODE_ENV !== 'development') {
+    url = process.env.REACT_APP_URL
+  } else {
+    url = process.env.REACT_APP_LOCAL_URL
+  }
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const res = await fetch(
-      `${process.env.REACT_APP_LOCAL_URL}/auth/createuser`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: credentials.name,
-          email: credentials.email,
-          password: credentials.password,
-        }),
-      }
-    )
+    const res = await fetch(`${url}/auth/createuser`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: credentials.name,
+        email: credentials.email,
+        password: credentials.password,
+      }),
+    })
     const data = await res.json()
     console.log(data)
     if (data.success) {

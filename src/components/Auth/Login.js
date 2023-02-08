@@ -10,9 +10,15 @@ const Login = ({ showAlert }) => {
       [e.target.name]: e.target.value,
     })
   }
+  let url
+  if (process.env.NODE_ENV !== 'development') {
+    url = process.env.REACT_APP_URL
+  } else {
+    url = process.env.REACT_APP_LOCAL_URL
+  }
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const res = await fetch(`${process.env.REACT_APP_LOCAL_URL}/auth/login`, {
+    const res = await fetch(`${url}/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -23,7 +29,6 @@ const Login = ({ showAlert }) => {
       }),
     })
     const data = await res.json()
-    console.log(data)
     if (data.success) {
       // save auth token and redirect
       localStorage.setItem('auth-token', data.token)
