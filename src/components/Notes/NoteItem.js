@@ -49,9 +49,11 @@ const NoteItem = ({ note, updateNote, showAlert }) => {
             </span>
           </h5>
           <p className='card-text'>{note.description}</p>
+
           <button className='btn btn-info' onClick={() => updateNote(note)}>
             <i className='fa-regular fa-pen-to-square'></i>
           </button>
+          
           <button
             className='btn btn-danger ms-2'
             onClick={() => {

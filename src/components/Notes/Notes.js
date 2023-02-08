@@ -8,11 +8,14 @@ import NoteItem from './NoteItem'
 const Notes = ({ showAlert }) => {
   const navigate = useNavigate()
   const context = useContext(NoteContext)
+
   const { notes, fetchNotes, editNote } = context
+
   const ref = useRef(null)
   const refClose = useRef(null)
   const val = useRef(null)
   const val2 = useRef(null)
+
   const [note, setNote] = useState({
     id: '',
     eTitle: '',
@@ -34,6 +37,7 @@ const Notes = ({ showAlert }) => {
       ...note,
       [e.target.name]: e.target.value,
     })
+
     if (e.target.name === 'eTitle') {
       if (note.eTitle.trim().length < 2) {
         val.current.classList.remove('d-none')
@@ -43,6 +47,7 @@ const Notes = ({ showAlert }) => {
         val.current.classList.add('d-none')
       }
     }
+
     if (e.target.name === 'eDescription') {
       console.log(note.eDescription.trim().length)
       if (note.eDescription.trim().length < 4) {
@@ -54,15 +59,20 @@ const Notes = ({ showAlert }) => {
       }
     }
   }
+
   const handleClick = (e) => {
     e.preventDefault()
+
     editNote(note.id, note.eTitle, note.eDescription, note.eTag)
+
     refClose.current.click()
+
     showAlert('Note updated successfully.', 'info')
   }
 
   const updateNote = (currentNote) => {
     ref.current.click()
+
     setNote({
       id: currentNote._id,
       eTitle: currentNote.title,
@@ -74,6 +84,7 @@ const Notes = ({ showAlert }) => {
   return (
     <>
       <AddNote showAlert={showAlert} />
+
       <button
         type='button'
         className='btn btn-primary'
@@ -84,6 +95,7 @@ const Notes = ({ showAlert }) => {
       >
         Launch demo modal
       </button>
+
       <div
         className='modal fade'
         id='exampleModal'
@@ -97,6 +109,7 @@ const Notes = ({ showAlert }) => {
               <h5 className='modal-title' id='exampleModalLabel'>
                 Edit Note
               </h5>
+
               <button
                 type='button'
                 className='btn-close'
@@ -104,6 +117,7 @@ const Notes = ({ showAlert }) => {
                 aria-label='Close'
               ></button>
             </div>
+
             <div className='modal-body py-0'>
               <form className='my-3'>
                 <div className='form-group my-3'>
@@ -125,6 +139,7 @@ const Notes = ({ showAlert }) => {
                     Enter at least 3 characters
                   </p>
                 </div>
+
                 <div className='form-group my-3'>
                   <label htmlFor='description' className='mb-1'>
                     Description
@@ -143,6 +158,7 @@ const Notes = ({ showAlert }) => {
                     Enter at least 5 characters
                   </p>
                 </div>
+
                 <div className='form-group my-3'>
                   <label htmlFor='tag' className='mb-1'>
                     Tag
@@ -159,6 +175,7 @@ const Notes = ({ showAlert }) => {
                 </div>
               </form>
             </div>
+            
             <div className='modal-footer'>
               <button
                 type='button'

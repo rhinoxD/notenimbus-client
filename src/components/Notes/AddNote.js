@@ -4,12 +4,15 @@ import NoteContext from '../../context/notes/NoteContext'
 
 const AddNote = ({ showAlert }) => {
   const context = useContext(NoteContext)
+
   const { addNote } = context
+
   const [note, setNote] = useState({
     title: '',
     description: '',
     tag: 'General',
   })
+
   const val = useRef(null)
   const val2 = useRef(null)
 
@@ -18,6 +21,7 @@ const AddNote = ({ showAlert }) => {
       ...note,
       [e.target.name]: e.target.value,
     })
+
     if (e.target.name === 'title') {
       if (note.title.trim().length < 2) {
         val.current.classList.remove('d-none')
@@ -27,6 +31,7 @@ const AddNote = ({ showAlert }) => {
         val.current.classList.add('d-none')
       }
     }
+
     if (e.target.name === 'description') {
       if (note.description.trim().length < 4) {
         val2.current.classList.remove('d-none')
@@ -37,16 +42,20 @@ const AddNote = ({ showAlert }) => {
       }
     }
   }
+
   const handleClick = (e) => {
     e.preventDefault()
+
     addNote(note.title, note.description, note.tag)
     setNote({ title: '', description: '', tag: 'General' })
+
     showAlert('Note added successfully.', 'info')
   }
 
   return (
     <div className='container my-4'>
       <h1>Add a Note</h1>
+
       <form className='my-3'>
         <div className='form-group'>
           <label htmlFor='title'>Title</label>
@@ -66,6 +75,7 @@ const AddNote = ({ showAlert }) => {
             Enter at least 3 characters
           </p>
         </div>
+
         <div className='form-group'>
           <label htmlFor='description'>Description</label>
           <input
@@ -83,6 +93,7 @@ const AddNote = ({ showAlert }) => {
             Enter at least 5 characters
           </p>
         </div>
+
         <div className='form-group'>
           <label htmlFor='tag'>Tag</label>
           <input
@@ -95,6 +106,7 @@ const AddNote = ({ showAlert }) => {
             value={note.tag}
           />
         </div>
+        
         <button
           type='submit'
           className='btn btn-primary mt-2'
